@@ -3,66 +3,34 @@ import axios from "axios";
 import { Trophy, User, RefreshCw } from "lucide-react";
 import "./App.css";
 
-const colaboradoresMaster = [
-  { id: "104CGP", nombre: "Cristina Garcia Pineda" },
-  { id: "113MCM", nombre: "Marisa Cortes Merino" },
-  { id: "103MCV", nombre: "Michell Contreras Vazquez" },
-  { id: "102RGJ", nombre: "Madian Rubi Gonzalez Juarez" },
-  { id: "130LCM", nombre: "Lorena Cortez Merino" },
-  { id: "207ASS", nombre: "Adriana Sanchez Sarmiento" },
-  { id: "202LMP", nombre: "Leticia Moreno Pacheco" },
-  { id: "887MJCC", nombre: "Maria Jose Coello Coello" },
-  { id: "101MHA", nombre: "Maria Fernanda Hernandez Aguilar" },
-  { id: "110KDH", nombre: "Karen Denise Hernandez Coello" },
-  { id: "126MGMM", nombre: "Monica Guadalupe Moraleno Medrano" },
-  { id: "764SST", nombre: "Sandra Sanchez Torres" },
-  { id: "899JDNA", nombre: "Juan Diego Napoles Ancelmo" },
-  { id: "201EOP", nombre: "Emmanuel Orduña Pacheco" },
-  { id: "105MCM", nombre: "Mariana Contreras Merino" },
-  { id: "203DMA", nombre: "Diana Mendoza Antonio" },
-  { id: "116MAJZ", nombre: "Maria de los Angeles Jimenez Zaragoza" },
-];
-
 function App() {
   const [ranking, setRanking] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/ranking");
-      const datosExcel = response.data || [];
+      // Usamos la variable de entorno de Vercel o el link directo de Render como respaldo
+      const apiUrl =
+        process.env.REACT_APP_API_URL ||
+        "https://ranking-zam-backend.onrender.com";
+      const response = await axios.get(`${apiUrl}/ranking`);
 
-      const rankingCompleto = colaboradoresMaster.map((colab) => {
-        const statsExcel = datosExcel.find(
-          (item) =>
-            item.nombre.toUpperCase().trim() === colab.id.toUpperCase().trim(),
-        );
-        return {
-          id: colab.id,
-          nombreReal: colab.nombre,
-          retornos: statsExcel ? statsExcel.retornos : 0,
-          boletos: statsExcel ? statsExcel.boletos : 0,
-        };
-      });
-
-      rankingCompleto.sort((a, b) => {
-        if (b.retornos !== a.retornos) return b.retornos - a.retornos;
-        return b.boletos - a.boletos;
-      });
-
-      setRanking(rankingCompleto);
+      // El backend ya nos manda el ranking ordenado y con nombres reales
+      setRanking(response.data || []);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error al obtener datos del ranking:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 30000);
+    const interval = setInterval(fetchData, 30000); // Refresco cada 30 segundos
     return () => clearInterval(interval);
   }, []);
 
   const topThree = ranking.slice(0, 3);
   const remainder = ranking.slice(3);
+
+  // Mantenemos tu lógica de orden para el podio (2do - 1ro - 3ro)
   const podiumOrder = [
     topThree[1] || null,
     topThree[0] || null,
@@ -96,7 +64,6 @@ function App() {
                   <User size={visualRank === 1 ? 40 : 30} />
                 </div>
 
-                {/* --- CAMBIO AQUÍ: NOMBRES SEPARADOS --- */}
                 <div className="agent-info-container">
                   <div className="agent-name-main">{agent.nombreReal}</div>
                   <div className="agent-id-badge">ID: {agent.id}</div>
