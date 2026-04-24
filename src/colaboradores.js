@@ -1,0 +1,23 @@
+export const colaboradoresMaster = [
+  { id: "104CGP", nombre: "Cristina Garcia Pineda", foto: null },
+  { id: "113MCM", nombre: "Marisa Cortes Merino", foto: null },
+  { id: "103MCV", nombre: "Michell Contreras Vazquez", foto: null },
+  { id: "102RGJ", nombre: "Madian Rubi Gonzalez Juarez", foto: null },
+  { id: "130LCM", nombre: "Lorena Cortez Merino", foto: null },
+  { id: "207ASS", nombre: "Adriana Sanchez Sarmiento", foto: null },
+  { id: "202LMP", nombre: "Leticia Moreno Pacheco", foto: null },
+  { id: "887MJCC", nombre: "Maria Jose Coello Coello", foto: null },
+  { id: "101MHA", nombre: "Maria Fernanda Hernandez Aguilar", foto: null },
+  { id: "110KDH", nombre: "Karen Denise Hernandez Coello", foto: null },
+  { id: "126MGMM", nombre: "Monica Guadalupe Moraleno Medrano", foto: null },
+  { id: "764SST", nombre: "Sandra Sanchez Torres", foto: null },
+  { id: "899JDNA", nombre: "Juan Diego Napoles Ancelmo", foto: null },
+  { id: "201EOP", nombre: "Emmanuel Orduña Pacheco", foto: null },
+  { id: "105MCM", nombre: "Mariana Contreras Merino", foto: null },
+  { id: "203DMA", nombre: "Diana Mendoza Antonio", foto: null },
+  {
+    id: "116MAJZ",
+    nombre: "Maria de los Angeles Jimenez Zaragoza",
+    foto: null,
+  },
+];

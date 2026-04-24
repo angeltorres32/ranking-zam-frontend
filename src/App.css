@@ -1,38 +1,257 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap');
+
+:root {
+  /* COLOR CORPORATIVO ZAPATERÍAS ANA MARÍA */
+  --brand-color: #85211f;
+  
+  /* PALETA DE DISEÑO PREMIUM */
+  --bg-premium: #f0f2f5;   
+  --card-white: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #6b7280;
+  
+  /* COLORES DE LAS MEDALLAS (Legibles sobre blanco) */
+  --gold-dark: #b8860b;   /* ORO */
+  --silver-dark: #475569; /* PLATA */
+  --bronze-dark: #92400e; /* COBRE */
+  --success: #85211f;     /* VERDE PARA NÚMEROS DE LISTA */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* RESET Y CENTRADO DE PÁGINA */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background-color: var(--bg-premium) !important;
+  color: var(--text-main) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Centrado absoluto del dashboard */
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
+  margin: 0;
+}
+
+.ranking-zam-container {
+  width: 100%;
+  max-width: 1100px; /* Ancho óptimo para visualización en pantallas */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER Y BADGE LIVE (FIX DE ICONO) */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  border-bottom: 2px solid #d1d5db;
+  padding-bottom: 30px;
+}
+
+.header-text h1 { 
+  font-size: 2.8rem; 
+  font-weight: 900; 
+  letter-spacing: -1.5px; 
+  color: var(--brand-color);
+}
+
+.header-text p { 
+  color: var(--text-muted); 
+  font-size: 0.8rem; 
+  letter-spacing: 4px; 
+  text-transform: uppercase;
+}
+
+.status-badge {
+  display: inline-flex; /* Fix para centrado de icono */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--success);
+  border: 2px solid var(--success);
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: white;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(0, 168, 89, 0.1);
+}
+
+.status-badge svg, .spin {
+  display: block;
+}
+
+/* PODIO - ESTRUCTURA METÁLICA */
+.podium-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 70px;
+}
+
+.podium-card {
+  background: var(--card-white);
+  border-radius: 35px;
+  padding: 45px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.podium-card:hover {
+  transform: translateY(-8px);
+}
+
+.rank-1 { 
+  height: 500px; 
+  border: 3px solid #d4af37; 
+  background: linear-gradient(180deg, #ffffff 0%, #fffef0 100%); 
+  z-index: 2; 
+}
+.rank-2 { height: 420px; border: 1.5px solid #94a3b8; }
+.rank-3 { height: 420px; border: 1.5px solid #cd7f32; }
+
+.rank-tag { position: absolute; top: 25px; left: 25px; font-weight: 900; font-size: 1.2rem; opacity: 0.2; }
+
+.avatar-main {
+  width: 85px;
+  height: 85px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #9ca3af;
+  border: 2px solid #e5e7eb;
+}
+
+.rank-1 .avatar-main { 
+  width: 110px; 
+  height: 110px; 
+  border-color: #d4af37; 
+  color: var(--gold-dark); 
+  background: #fef9c3; 
+}
+
+/* TEXTOS DE COLABORADORES */
+.agent-info-container {
+  margin-bottom: 25px;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.agent-name-main { 
+  font-size: 1.15rem; 
+  font-weight: 800; 
+  color: var(--brand-color); 
+  line-height: 1.2;
+}
+
+.agent-id-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  color: var(--text-muted);
+  display: inline-block;
+  margin-top: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* NÚMEROS: ALINEACIÓN Y COLORES RESTAURADOS */
+.stats-grid {
+  display: flex;
+  width: 100%;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.stat-box {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.stat-value {
+  font-size: 3.5rem; /* Tamaño grande e impactante */
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  display: block;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Asignación de colores por rango */
+.rank-1 .stat-value { color: var(--gold-dark) !important; }
+.rank-2 .stat-value { color: var(--silver-dark) !important; }
+.rank-3 .stat-value { color: var(--bronze-dark) !important; }
+
+.stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+  text-align: center;
 }
+
+.stat-divider { width: 1px; height: 45px; background: #e2e8f0; }
+
+/* LISTA DE PRODUCTIVIDAD (Puestos 4+) */
+.list-wrapper { width: 100%; max-width: 950px; margin: 0 auto; }
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--brand-color);
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.list-row-modern {
+  display: grid;
+  grid-template-columns: 60px 1fr 200px;
+  background: var(--card-white);
+  padding: 18px 35px;
+  border-radius: 22px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  border: 1px solid rgba(0,0,0,0.05);
+  align-items: center;
+}
+
+.row-rank { font-weight: 900; color: #cbd5e1; font-size: 1.3rem; }
+.row-name-main { font-weight: 700; font-size: 1.15rem; color: var(--brand-color); }
+.row-id-sub { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+.row-stats-group { display: flex; gap: 30px; justify-content: flex-end; }
+.mini-stat { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+
+.mini-stat strong { color: var(--success); font-size: 1.7rem; font-weight: 900; }
+.mini-stat span { font-size: 0.6rem; color: var(--text-muted); font-weight: 800; }
+
+/* ANIMACIÓN LIVE UPDATING */
+.spin { animation: rotation 4s infinite linear; }
+@keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
